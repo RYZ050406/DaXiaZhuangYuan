@@ -1,0 +1,40 @@
+# OS/editor files
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Logs and temporary files
+*.log
+*.tmp
+*.bak
+*.zip
+*.rar
+*.7z
+
+# Minecraft local/runtime data
+.minecraft/
+logs/
+crash-reports/
+screenshots/
+resourcepacks/
+shaderpacks/
+options.txt
+optionsof.txt
+servers.dat
+realms_persistence.json
+
+# Fabric/Java build outputs
+.gradle/
+build/
+out/
+run/
+classes/
+*.class
+
+# Keep source assets and map data trackable; ignore packaged exports by default.
+exports/
+dist/
+release/
