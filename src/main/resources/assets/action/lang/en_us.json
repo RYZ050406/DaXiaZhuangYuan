@@ -1,0 +1,14 @@
+{
+  "itemGroup.action": "action",
+  "key.category.action.controls": "action Controls",
+  "key.action.open_panel": "Open Action Panel",
+  "screen.action.title": "Action Panel",
+  "action.action.none": "Cancel Action",
+  "action.action.raise_right": "Raise Right Hand",
+  "action.action.raise_left": "Raise Left Hand",
+  "action.action.wave_right": "Wave Right Hand",
+  "action.action.wave_left": "Wave Left Hand",
+  "action.action.sit": "Sit",
+  "action.action.lie": "Lie Down",
+  "action.action.prone": "Prone"
+}

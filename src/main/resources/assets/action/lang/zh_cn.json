@@ -1,0 +1,14 @@
+{
+  "itemGroup.action": "action",
+  "key.category.action.controls": "action 动作",
+  "key.action.open_panel": "打开动作选择面板",
+  "screen.action.title": "动作选择",
+  "action.action.none": "取消动作",
+  "action.action.raise_right": "举右手",
+  "action.action.raise_left": "举左手",
+  "action.action.wave_right": "挥动右手",
+  "action.action.wave_left": "挥动左手",
+  "action.action.sit": "坐下",
+  "action.action.lie": "躺下",
+  "action.action.prone": "趴下"
+}

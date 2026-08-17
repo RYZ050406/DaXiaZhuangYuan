@@ -1,0 +1,16 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "com.daxia.action.mixin",
+  "compatibilityLevel": "JAVA_21",
+  "mixins": [
+    "EntityActionTickMixin",
+    "EntityBoundingBoxMixin",
+    "EntityMovementMixin",
+    "PlayerJumpMixin",
+    "PlayerLikeEntityDimensionsMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}
