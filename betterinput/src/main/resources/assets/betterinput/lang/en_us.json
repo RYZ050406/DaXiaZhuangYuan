@@ -1,0 +1,8 @@
+{
+  "screen.betterinput.link.title": "Add Book Link",
+  "screen.betterinput.link.command": "Command to run on click",
+  "screen.betterinput.link.done": "Apply",
+  "screen.betterinput.link.cancel": "Cancel",
+  "button.betterinput.link": "Link",
+  "button.betterinput.reset": "Reset"
+}

@@ -1,0 +1,19 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "com.daxia.betterinput.mixin",
+  "compatibilityLevel": "JAVA_21",
+  "mixins": [
+    "StringHelperMixin"
+  ],
+  "client": [
+    "AbstractSignEditScreenMixin",
+    "BookEditScreenMixin",
+    "BookSigningScreenMixin",
+    "EditBoxAccessor",
+    "EditBoxWidgetAccessor"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

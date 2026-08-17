@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 1,
+  "id": "betterinput",
+  "version": "${version}",
+  "name": "betterinput",
+  "description": "Adds rich formatting tools to book and sign editing screens.",
+  "authors": [
+    "Daxia"
+  ],
+  "license": "MIT",
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "com.daxia.betterinput.BetterInputMod"
+    ],
+    "client": [
+      "com.daxia.betterinput.client.BetterInputClient"
+    ]
+  },
+  "mixins": [
+    "betterinput.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=${loader_version}",
+    "minecraft": "${minecraft_version}",
+    "java": ">=21",
+    "fabric-api": "*"
+  }
+}
