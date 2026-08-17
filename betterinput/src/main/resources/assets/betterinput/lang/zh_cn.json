@@ -3,7 +3,7 @@
   "screen.betterinput.sign_command.title": "\u544a\u793a\u724c\u6307\u4ee4",
   "screen.betterinput.command_list.title": "\u6307\u4ee4\u5217\u8868",
   "screen.betterinput.command_list.edit_title": "\u7f16\u8f91\u6307\u4ee4",
-  "screen.betterinput.command_list.entry": "\u7b2c%s\u9875\uff1a%s",
+  "screen.betterinput.command_list.entry": "\u7b2c%s\u9875\uff1a\u201c%s\u201d",
   "screen.betterinput.command_list.empty": "\u672c\u4e66\u6682\u65e0\u6307\u4ee4",
   "screen.betterinput.command_list.edit": "\u7f16\u8f91",
   "screen.betterinput.command_list.remove": "\u5220\u9664",

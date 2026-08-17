@@ -6,9 +6,10 @@ import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.widget.ButtonWidget;
 import net.minecraft.text.Text;
+import net.minecraft.util.Formatting;
 
 public final class BookCommandListScreen extends Screen {
-    private static final int ROW_HEIGHT = 24;
+    private static final int ROW_HEIGHT = 34;
     private static final int LIST_TOP = 54;
     private final Screen parent;
     private final List<BetterInputPayloads.BookLink> links;
@@ -86,6 +87,7 @@ public final class BookCommandListScreen extends Screen {
                                 link.page(),
                                 link.start(),
                                 link.end(),
+                                link.selectedText(),
                                 command
                         ));
                     }
@@ -147,11 +149,18 @@ public final class BookCommandListScreen extends Screen {
                         Text.translatable(
                                 "screen.betterinput.command_list.entry",
                                 link.page() + 1,
-                                trimCommand(link.command())
+                                trimText(link.selectedText())
                         ),
                         centerX - 154,
                         rowY,
                         0xFFFFFF
+                );
+                context.drawTextWithShadow(
+                        this.textRenderer,
+                        Text.literal(trimCommand(link.command())),
+                        centerX - 154,
+                        rowY + 12,
+                        0xA0A0A0
                 );
             }
         }
@@ -171,11 +180,41 @@ public final class BookCommandListScreen extends Screen {
         return (this.links.size() - 1) / pageSize;
     }
 
+    private static String trimText(String text) {
+        String cleaned = stripFormattingCodes(text).replace('\n', ' ').trim();
+        if (cleaned.isEmpty()) {
+            return "?";
+        }
+
+        if (cleaned.length() <= 18) {
+            return cleaned;
+        }
+
+        return cleaned.substring(0, 15) + "...";
+    }
+
     private static String trimCommand(String command) {
-        if (command.length() <= 28) {
+        if (command.length() <= 34) {
             return command;
         }
 
-        return command.substring(0, 25) + "...";
+        return command.substring(0, 31) + "...";
+    }
+
+    private static String stripFormattingCodes(String text) {
+        StringBuilder builder = new StringBuilder(text.length());
+        for (int index = 0; index < text.length(); index++) {
+            if (text.charAt(index) == Formatting.FORMATTING_CODE_PREFIX && index + 1 < text.length()) {
+                Formatting formatting = Formatting.byCode(text.charAt(index + 1));
+                if (formatting != null) {
+                    index++;
+                    continue;
+                }
+            }
+
+            builder.append(text.charAt(index));
+        }
+
+        return builder.toString();
     }
 }

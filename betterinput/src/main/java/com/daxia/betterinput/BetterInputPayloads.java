@@ -17,24 +17,27 @@ public final class BetterInputPayloads {
         PayloadTypeRegistry.playC2S().register(SignFormatting.ID, SignFormatting.CODEC);
     }
 
-    public record BookLink(int page, int start, int end, String command) {
+    public record BookLink(int page, int start, int end, String selectedText, String command) {
     }
 
-    public record BookLinks(int slot, List<BookLink> links) implements CustomPayload {
+    public record BookLinks(int slot, List<BookLink> links, boolean storeWritable) implements CustomPayload {
         public static final CustomPayload.Id<BookLinks> ID = new CustomPayload.Id<>(BetterInputMod.id("book_links"));
         public static final PacketCodec<RegistryByteBuf, BookLinks> CODEC = PacketCodec.ofStatic(
                 (buffer, payload) -> {
                     buffer.writeVarInt(payload.slot);
+                    buffer.writeBoolean(payload.storeWritable);
                     buffer.writeVarInt(payload.links.size());
                     for (BookLink link : payload.links) {
                         buffer.writeVarInt(link.page());
                         buffer.writeVarInt(link.start());
                         buffer.writeVarInt(link.end());
+                        buffer.writeString(link.selectedText(), 256);
                         buffer.writeString(link.command(), 256);
                     }
                 },
                 buffer -> {
                     int slot = buffer.readVarInt();
+                    boolean storeWritable = buffer.readBoolean();
                     int size = buffer.readVarInt();
                     List<BookLink> links = new ArrayList<>(size);
                     for (int index = 0; index < size; index++) {
@@ -42,10 +45,11 @@ public final class BetterInputPayloads {
                                 buffer.readVarInt(),
                                 buffer.readVarInt(),
                                 buffer.readVarInt(),
+                                buffer.readString(256),
                                 buffer.readString(256)
                         ));
                     }
-                    return new BookLinks(slot, links);
+                    return new BookLinks(slot, links, storeWritable);
                 }
         );
 

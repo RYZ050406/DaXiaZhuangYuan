@@ -3,7 +3,7 @@
   "screen.betterinput.sign_command.title": "Sign Command",
   "screen.betterinput.command_list.title": "Command List",
   "screen.betterinput.command_list.edit_title": "Edit Command",
-  "screen.betterinput.command_list.entry": "Page %s: %s",
+  "screen.betterinput.command_list.entry": "Page %s: \"%s\"",
   "screen.betterinput.command_list.empty": "No commands in this book",
   "screen.betterinput.command_list.edit": "Edit",
   "screen.betterinput.command_list.remove": "Delete",

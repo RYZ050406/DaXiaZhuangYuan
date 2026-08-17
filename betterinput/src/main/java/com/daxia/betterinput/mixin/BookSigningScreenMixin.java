@@ -42,7 +42,7 @@ public abstract class BookSigningScreenMixin extends Screen {
             return;
         }
 
-        ClientPlayNetworking.send(new BetterInputPayloads.BookLinks(this.betterinput$getBookSlot(), links));
+        ClientPlayNetworking.send(new BetterInputPayloads.BookLinks(this.betterinput$getBookSlot(), links, false));
     }
 
     @Unique

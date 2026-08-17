@@ -42,13 +42,10 @@ public final class BetterInputNetworking {
     }
 
     private static void queueBookLinks(ServerPlayerEntity player, BetterInputPayloads.BookLinks payload) {
-        if (payload.links().isEmpty()) {
-            return;
-        }
-
         BetterInputPayloads.BookLinks copiedPayload = new BetterInputPayloads.BookLinks(
                 payload.slot(),
-                new ArrayList<>(payload.links())
+                new ArrayList<>(payload.links()),
+                payload.storeWritable()
         );
         if (tryApplyBookLinks(player, copiedPayload)) {
             return;
@@ -96,6 +93,17 @@ public final class BetterInputNetworking {
 
     private static boolean tryApplyBookLinks(ServerPlayerEntity player, BetterInputPayloads.BookLinks payload) {
         ItemStack stack = player.getInventory().getStack(payload.slot());
+        if (payload.storeWritable() && stack.isOf(Items.WRITABLE_BOOK)) {
+            BookCommandStorage.write(stack, payload.links());
+            player.getInventory().setStack(payload.slot(), stack);
+            player.getInventory().markDirty();
+            player.playerScreenHandler.sendContentUpdates();
+            if (player.currentScreenHandler != player.playerScreenHandler) {
+                player.currentScreenHandler.sendContentUpdates();
+            }
+            return true;
+        }
+
         if (!stack.isOf(Items.WRITTEN_BOOK)) {
             return false;
         }
