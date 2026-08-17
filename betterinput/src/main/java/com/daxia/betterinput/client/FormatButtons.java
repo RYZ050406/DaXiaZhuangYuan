@@ -56,9 +56,9 @@ public final class FormatButtons {
 
         if (includeLink) {
             buttons.add(ButtonWidget.builder(
-                    Text.translatable("button.betterinput.link").formatted(Formatting.AQUA, Formatting.UNDERLINE),
+                    Text.translatable("button.betterinput.book_command").formatted(Formatting.AQUA, Formatting.UNDERLINE),
                     button -> linkAction.run()
-            ).dimensions(x, styleY + 24, 64, 18).build());
+            ).dimensions(x, styleY + 24, 70, 18).build());
         }
 
         return buttons;

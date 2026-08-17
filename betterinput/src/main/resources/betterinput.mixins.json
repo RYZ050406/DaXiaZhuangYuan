@@ -4,6 +4,7 @@
   "package": "com.daxia.betterinput.mixin",
   "compatibilityLevel": "JAVA_21",
   "mixins": [
+    "SignBlockEntityMixin",
     "StringHelperMixin"
   ],
   "client": [

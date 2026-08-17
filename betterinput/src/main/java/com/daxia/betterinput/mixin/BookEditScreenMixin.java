@@ -3,6 +3,7 @@ package com.daxia.betterinput.mixin;
 import com.daxia.betterinput.BetterInputFormatting;
 import com.daxia.betterinput.BetterInputBookLinkHolder;
 import com.daxia.betterinput.BetterInputPayloads;
+import com.daxia.betterinput.client.BookCommandListScreen;
 import com.daxia.betterinput.client.FormatButtons;
 import com.daxia.betterinput.client.LinkCommandScreen;
 import java.util.ArrayList;
@@ -12,6 +13,7 @@ import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.EditBox;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.screen.ingame.BookEditScreen;
+import net.minecraft.client.gui.widget.ButtonWidget;
 import net.minecraft.client.gui.widget.EditBoxWidget;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.text.Text;
@@ -37,9 +39,14 @@ public abstract class BookEditScreenMixin extends Screen implements BetterInputB
 
     @Inject(method = "init", at = @At("TAIL"))
     private void betterinput$addToolbar(CallbackInfo ci) {
-        for (var button : FormatButtons.create(Math.max(8, this.width - 158), 24, true, this::betterinput$formatSelection, this::betterinput$openLinkScreen)) {
+        int toolbarX = Math.max(8, this.width - 158);
+        for (var button : FormatButtons.create(toolbarX, 24, true, this::betterinput$formatSelection, this::betterinput$openLinkScreen)) {
             this.addDrawableChild(button);
         }
+        this.addDrawableChild(ButtonWidget.builder(
+                Text.translatable("button.betterinput.command_list"),
+                button -> betterinput$openCommandListScreen()
+        ).dimensions(toolbarX + 74, 90, 70, 18).build());
     }
 
     @Inject(method = "finalizeBook", at = @At("TAIL"))
@@ -99,5 +106,10 @@ public abstract class BookEditScreenMixin extends Screen implements BetterInputB
                     command
             ));
         }));
+    }
+
+    @Unique
+    private void betterinput$openCommandListScreen() {
+        this.client.setScreen(new BookCommandListScreen(this, this.betterinput$links));
     }
 }
